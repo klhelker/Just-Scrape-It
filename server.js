@@ -42,7 +42,23 @@ app.get("/scrape", function(req, res) {
 
         console.log(link)
 
-        var result = {};
+       db.Article.insert({
+          title: title,
+          summary: body,
+          link: link
+        },
+        function(err, inserted) {
+          if (err) {
+            // Log the error if one is encountered during the query
+            console.log(err);
+          }
+          else {
+            // Otherwise, log the inserted data
+            console.log(inserted);
+          }
+        });
+
+
       });
   
         // Add the text and href of every link, and save them as properties of the result object

@@ -17,21 +17,22 @@ var ArticleSchema = new Schema({
       type: String, 
 
   },
-  saved: {
-      boolean: true,
-      default: false
+  // saved: {
+  //     type: Boolean,
+  //     default: false
 
-  },
+  // },
   // `link` is required and of type String
   link: {
     type: String,
     required: true
-  },
-  
-  comment: {
-      type: Schema.type.ObjectId, 
-
   }
+  
+  // comment: {
+  //     type: Schema.type.ObjectId, 
+  //     default: null
+
+  // }
 });
 
 // This creates our model from the above schema, using mongoose's model method
