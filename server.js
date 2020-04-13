@@ -28,7 +28,7 @@ app.get("/scrape", function(req, res) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(response.data);
       
-  
+      var post = []
       // Now, we grab every h2 within an article tag, and do the following:
       $(".infinite-post").each(function(i, element) {
         // Save an empty result object
@@ -40,26 +40,26 @@ app.get("/scrape", function(req, res) {
 
         var link = $(element).find("a").attr("href")
 
-        console.log(link)
+        var results = {
 
-       db.Article.insert({
-          title: title,
+          title: title, 
           summary: body,
           link: link
-        },
-        function(err, inserted) {
-          if (err) {
-            // Log the error if one is encountered during the query
-            console.log(err);
-          }
-          else {
-            // Otherwise, log the inserted data
-            console.log(inserted);
-          }
-        });
+
+        }
+        console.log(results)
+        post.push(results)
+      })
+        db.Article.create(post).then(data => {
+        res.redirect("/")
+      })
+    })
+  })
+        
+  // create get route articles and print to page
 
 
-      });
+      
   
         // Add the text and href of every link, and save them as properties of the result object
         // response.title = $(this)
@@ -81,10 +81,10 @@ app.get("/scrape", function(req, res) {
       //     });
       // });
   
-      // Send a message to the client
-      res.send("Scrape Complete");
-    });
-  });
+      // // Send a message to the client
+      // res.send("Scrape Complete");
+
+  
   app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
   });
