@@ -55,7 +55,17 @@ app.get("/scrape", function(req, res) {
       })
     })
   })
-        
+  app.get("/api/articles", function(req, res) {
+    console.log("Hi I work")
+    // Grab every document in the Articles collection
+    db.Article.find({})
+      .then(function(dbArticle) {
+        console.log(dbArticle)
+        // find Articles
+        res.json(dbArticle);
+      })
+    });
+
   // create get route articles and print to page
 
 
