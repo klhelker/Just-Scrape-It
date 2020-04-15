@@ -44,7 +44,8 @@ app.get("/scrape", function(req, res) {
 
           title: title, 
           summary: body,
-          link: link
+          link: link, 
+          saved: false
 
         }
         console.log(results)
@@ -66,6 +67,14 @@ app.get("/scrape", function(req, res) {
       })
     });
 
+  app.put("/api/save/:id", function(req, res) {
+    console.log("connected")
+    db.Article.updateOne({where: {_id: req.params.id}}, {saved: true}).then(function(dbArticle){
+      console.log(dbArticle)
+      res.json(dbArticle)
+    })
+    
+  });
   // create get route articles and print to page
 
 
