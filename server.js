@@ -75,34 +75,7 @@ app.get("/scrape", function(req, res) {
     })
     
   });
-  // create get route articles and print to page
-
-
-      
   
-        // Add the text and href of every link, and save them as properties of the result object
-        // response.title = $(this)
-        //   .children("a")
-        //   .text();
-        // response.link = $(this)
-        //   .children("a")
-        //   .attr("href");
-  
-      //   // Create a new Article using the `result` object built from scraping
-      //   db.Article.create(result)
-      //     .then(function(dbArticle) {
-      //       // View the added result in the console
-      //       console.log(dbArticle);
-      //     })
-      //     .catch(function(err) {
-      //       // If an error occurred, log it
-      //       console.log(err);
-      //     });
-      // });
-  
-      // // Send a message to the client
-      // res.send("Scrape Complete");
-
   
   app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
